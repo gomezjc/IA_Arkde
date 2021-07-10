@@ -1,1 +1,1 @@
-# IA_Arkde
+# CURSO IA Avanzado Arkde
