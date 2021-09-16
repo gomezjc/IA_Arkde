@@ -49,4 +49,15 @@ void ASTS_PlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 
 	PlayerInputComponent->BindAction("Crouch", IE_Pressed, this, &ASTS_PlayerCharacter::StartCrouch);
 	PlayerInputComponent->BindAction("Crouch", IE_Released, this, &ASTS_PlayerCharacter::StopCrouch);
+	
+	PlayerInputComponent->BindAction("Fire", IE_Released, this, &ASTS_PlayerCharacter::StartFire);
+}
+
+FVector ASTS_PlayerCharacter::GetPawnViewLocation() const
+{
+	if (IsValid(CameraComponent))
+	{
+		return CameraComponent->GetComponentLocation();
+	}
+	return Super::GetPawnViewLocation();
 }

@@ -6,6 +6,8 @@
 #include "GameFramework/Character.h"
 #include "STS_BaseCharacter.generated.h"
 
+class ASTS_Weapon;
+
 UCLASS()
 class ARK_STEALTHSHOOTER_API ASTS_BaseCharacter : public ACharacter
 {
@@ -19,6 +21,18 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	UPROPERTY(EditDefaultsOnly)
+    TSubclassOf<ASTS_Weapon> StartWeaponClass;
+
+	UPROPERTY(BlueprintReadOnly)
+	ASTS_Weapon* CurrentWeapon;
+
+	UPROPERTY(EditDefaultsOnly)
+	FName WeaponSocketName;
+
+	UFUNCTION(BlueprintCallable)
+	void StartFire();
+	
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

@@ -6,8 +6,6 @@
 #include "GameFramework/Actor.h"
 #include "STS_Weapon.generated.h"
 
-class UStaticMeshComponent;
-
 UCLASS()
 class ARK_STEALTHSHOOTER_API ASTS_Weapon : public AActor
 {
@@ -17,11 +15,22 @@ public:
 	// Sets default values for this actor's properties
 	ASTS_Weapon();
 
+	void Fire();
+
 protected:
 
-	UStaticMeshComponent* WeaponMesh;
+	UPROPERTY(EditDefaultsOnly, Category="Mesh")
+	class UStaticMeshComponent* WeaponMesh;
 	
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	UPROPERTY(EditDefaultsOnly)
+	float ShotDistance;
+
+	UPROPERTY(EditDefaultsOnly)
+	float ShotDamage;
+
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<UDamageType> DamageType;
 };
